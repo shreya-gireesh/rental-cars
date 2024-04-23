@@ -20,6 +20,17 @@
     border-radius: 25px;
 }
 
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border-radius: 25px;
+    align-items: center;
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+}
+.btn-color-transition {
+    transition: background-color 0.3s ease;
+}
+
 
   /*Footer*/
 .socialicons a{

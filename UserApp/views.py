@@ -98,7 +98,7 @@ def booking(request):
             request.session['carid'] = carid
             return redirect('car')
     return render(request, 'booking.html', {'booked_cars': car_id, 'cars': cars, 'user': user_authenticated, 'name': username,
-                                            'pickup':pickup, 'pickup_date':pickup_date, 'dropoff':dropoff, 'dropoff_date':dropoff_date})
+                                            'pickup':pickup, 'pickup_date':pdate.date(), 'dropoff':dropoff, 'dropoff_date':ddate.date()})
 
 
 def blogs(request):
@@ -135,6 +135,9 @@ def car(request):
     dropoff_date = request.session.get('dropoff_date')
     hours = request.session.get('hour')
 
+    pdate = datetime.strptime(pickup_date, '%Y-%m-%d')
+    ddate = datetime.strptime(dropoff_date, '%Y-%m-%d')
+
     pickup = PlacesModel.objects.filter(places_id=pickup_loc)
     dropoff = PlacesModel.objects.filter(places_id=dropoff_loc)
 
@@ -158,8 +161,8 @@ def car(request):
             # new_booking.dropof_date = request.session.get('dropoff_date')
             # new_booking.save()
     return render(request, 'car.html', {'car_interiors': car_interiors, 'cars': cars, 'user': user_authenticated, 'name': username,
-                                        'pickup':pickup, 'pickup_date':pickup_date, 'dropoff':dropoff,
-                                        'dropoff_date':dropoff_date, 'hours':hours, 'reviews':review})
+                                        'pickup':pickup, 'pickup_date':pdate.date(), 'dropoff':dropoff,
+                                        'dropoff_date':ddate.date(), 'hours':hours, 'reviews':review})
 
 def account(request):
     username = request.session.get('user')
