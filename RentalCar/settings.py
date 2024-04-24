@@ -80,11 +80,23 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'rentalcar',
         'USER': 'root',
-        'PASSWORD': 'Shrgs@root123',
-        'HOST':'localhost',
+        'PASSWORD': 'shrgs2811',
+        'HOST':'database-1.c320agwsq1kw.eu-north-1.rds.amazonaws.com',
         'PORT':'3306',
         }
     }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'rentalcar',
+#         'USER': 'root',
+#         'PASSWORD': 'Shrgs@root123',
+#         'HOST':'localhost',
+#         'PORT':'3306',
+#         }
+#     }
+
 
 
 # Password validation
@@ -122,6 +134,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR / 'static'),
 ]

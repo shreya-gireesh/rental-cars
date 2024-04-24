@@ -39,7 +39,6 @@ def home(request):
 
 
 def logout(request):
-    print('Logout func')
     del request.session['user']
     return redirect('/')
 
@@ -58,7 +57,6 @@ def booking(request):
     # to find available cars
     car_id = BookingModel.objects.filter(pickup_date__lte=dropoff_date, dropof_date__gte=pickup_date).values_list(
         'car_id', flat=True)
-    print(car_id)
     # booked_cars = CarImgModel.objects.exclude(car__car_id__in=car_id)
     # print(booked_cars)
     cars = CarImgModel.objects.all()
@@ -68,13 +66,11 @@ def booking(request):
     ddate = datetime.strptime(dropoff_date, '%Y-%m-%d')
     time_difference = ddate - pdate
     total_hours = time_difference.total_seconds() / 3600
-    print(f"Hours:{total_hours}")
     request.session['hour'] = total_hours
 
     if request.method == 'POST':
         # Filters
         if request.POST.get('filter-btn'):
-            print(request.POST)
             if request.POST.get('manual'):
                 cars = cars.filter(car__car_type = 'Manual')
             if request.POST.get('automatic'):
@@ -145,12 +141,10 @@ def car(request):
     cars = CarImgModel.objects.filter(car_id = carid)
     car_interiors = CarInteriorsModel.objects.filter(car__car_id = carid)
     review = CommentModel.objects.filter(car__car_id = carid)
-    print(cars)
     user_authenticated = 'user' in request.session
     username = request.session.get('user', None)
 
-    if request.POST.get('confirm-btn'):
-        print('CONFIRM')
+    # if request.POST.get('confirm-btn'):
             # car_id = request.POST.get('car_id')
             # new_booking = BookingModel()
             # new_booking.car = CarModel.objects.get(car_id = car_id)
